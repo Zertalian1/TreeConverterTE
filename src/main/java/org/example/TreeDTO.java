@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreeDTO {
+public class TreeDTO implements Comparable<TreeDTO> {
     private final Integer id;
     private final String name;
     private final List<TreeDTO> children = new ArrayList<>();
@@ -23,5 +23,10 @@ public class TreeDTO {
 
     public List<TreeDTO> getChildren() {
         return children;
+    }
+
+    @Override
+    public int compareTo(TreeDTO o) {
+        return this.id-o.getId();
     }
 }

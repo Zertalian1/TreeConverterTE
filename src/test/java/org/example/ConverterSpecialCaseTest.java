@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ConverterTest extends TestCase {
+public class ConverterSpecialCaseTest extends TestCase {
 
     public void testConvertSingleBinaryTree() {
         List<TreeEntity> entityList = new ArrayList<>();
@@ -15,7 +15,7 @@ public class ConverterTest extends TestCase {
         entityList.add(new TreeEntity(1, "left", 0));
         entityList.add(new TreeEntity(2, "right", 0));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertAllTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
         Assert.assertEquals(resultListOfTrees.size(),1);
         Assert.assertEquals(resultListOfTrees.get(0).getChildren().size(),2);
 
@@ -37,7 +37,7 @@ public class ConverterTest extends TestCase {
         entityList.add(new TreeEntity(4, "left", 2));
         entityList.add(new TreeEntity(5, "right", 2));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertAllTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
         Assert.assertEquals(resultListOfTrees.size(),2);
 
         for (TreeDTO tree: resultListOfTrees) {
@@ -70,7 +70,7 @@ public class ConverterTest extends TestCase {
         entityList.add(new TreeEntity(5, "right2", 2));
         entityList.add(new TreeEntity(6, "right2", 1));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertAllTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
         Assert.assertEquals(resultListOfTrees.size(),1);
         Assert.assertEquals(resultListOfTrees.get(0).getChildren().size(),2);
 
@@ -105,7 +105,7 @@ public class ConverterTest extends TestCase {
         entityList.add(new TreeEntity(2, "centre", 0));
         entityList.add(new TreeEntity(3, "right", 0));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertAllTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
         Assert.assertEquals(resultListOfTrees.size(),1);
         Assert.assertEquals(resultListOfTrees.get(0).getChildren().size(),3);
 
@@ -133,7 +133,7 @@ public class ConverterTest extends TestCase {
         entityList.add(new TreeEntity(6, "right", 0));
         entityList.add(new TreeEntity(7, "right", 2));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertAllTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
         Assert.assertEquals(resultListOfTrees.size(),2);
 
         for (TreeDTO tree: resultListOfTrees) {

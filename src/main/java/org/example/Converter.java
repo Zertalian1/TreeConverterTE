@@ -6,11 +6,11 @@ public class Converter {
 
     /**
      * Преобразует коллекцию элементов в список деревьев, элементы заполняют уровень слева на право,
-     * в порядке их расположения в передаваемом множестве
+     * в порядке их расположения в передаваемом множестве. Предрологается, что id родителя меньше id предка
      * @param entities - множество элементов дерева
-     * @return список деревьев
+     * @return список деревьев в порядке возрастания id корня
      */
-    public static List<TreeDTO> convertAllTree(Collection<TreeEntity> entities) {
+    public static List<TreeDTO> convertTree(Collection<TreeEntity> entities) {
         List<TreeEntity> sortedEntities = entities.stream()
                 .sorted(Comparator.naturalOrder())
                 .toList();
@@ -35,7 +35,38 @@ public class Converter {
             lastLevelMap.get(lastNode).getChildren().add(node);
             lastLevelMap.put(node.getId(), node);
         }
-        return new ArrayList<>(treeMap.values());
+        return treeMap.values().stream().sorted(Comparator.naturalOrder()).toList();
+    }
+
+    /**
+     * Преобразует коллекцию элементов в список деревьев, элементы заполняют уровень слева на право,
+     * в порядке их расположения в передаваемом множестве.
+     * @param entities - множество элементов дерева
+     * @return список деревьев в порядке возрастания id корня
+     */
+    public static List<TreeDTO> convertAllTree(Collection<TreeEntity> entities) {
+        Map<Integer, TreeDTO> treeMap = new HashMap<>();
+        Map<Integer, TreeDTO> lastLevelMap = new HashMap<>();
+        for (TreeEntity entity: entities) {
+            if (entity.getParentId() == null) {
+                TreeDTO coreEntity = treeEntityToTreeDto(entity);
+                treeMap.put(coreEntity.getId(), coreEntity);
+                lastLevelMap.put(entity.getId(), coreEntity);
+            }
+        }
+        while (!lastLevelMap.isEmpty()) {
+            Map<Integer, TreeDTO> newLevelMap = new HashMap<>();
+            for (TreeEntity entity: entities) {
+                TreeDTO localRoot = lastLevelMap.get(entity.getParentId());
+                if (localRoot != null) {
+                    TreeDTO node = treeEntityToTreeDto(entity);
+                    localRoot.getChildren().add(node);
+                    newLevelMap.put(node.getId(), node);
+                }
+            }
+            lastLevelMap = newLevelMap;
+        }
+        return treeMap.values().stream().sorted(Comparator.naturalOrder()).toList();
     }
 
     private static TreeDTO treeEntityToTreeDto (TreeEntity entity) {
