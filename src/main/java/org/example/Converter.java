@@ -3,6 +3,13 @@ package org.example;
 import java.util.*;
 
 public class Converter {
+
+    /**
+     * Преобразует коллекцию элементов в список деревьев, элементы заполняют уровень слева на право,
+     * в порядке их расположения в передаваемом множестве
+     * @param entities - множество элементов дерева
+     * @return список деревьев
+     */
     public static List<TreeDTO> convertAllTree(Collection<TreeEntity> entities) {
         List<TreeEntity> sortedEntities = entities.stream()
                 .sorted(Comparator.naturalOrder())
