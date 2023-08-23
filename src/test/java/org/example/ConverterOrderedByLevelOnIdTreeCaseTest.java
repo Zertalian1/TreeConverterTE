@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.*;
 
-public class ConverterSpecialCaseTest  extends ConverterTestBase {
+public class ConverterOrderedByLevelOnIdTreeCaseTest extends ConverterTestBase {
 
     @Override
     public void testConvertSingleBinaryTree() {
@@ -11,7 +11,7 @@ public class ConverterSpecialCaseTest  extends ConverterTestBase {
         entityList.add(new TreeEntity(1, "left", 0));
         entityList.add(new TreeEntity(2, "right", 0));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertOrderedByLevelOnIdTree(entityList);
         checkTreeDTOFields(resultListOfTrees, entityList);
 
     }
@@ -26,7 +26,7 @@ public class ConverterSpecialCaseTest  extends ConverterTestBase {
         entityList.add(new TreeEntity(4, "left", 2));
         entityList.add(new TreeEntity(5, "right", 2));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertOrderedByLevelOnIdTree(entityList);
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 
@@ -41,7 +41,7 @@ public class ConverterSpecialCaseTest  extends ConverterTestBase {
         entityList.add(new TreeEntity(5, "right2", 2));
         entityList.add(new TreeEntity(6, "right2", 1));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertOrderedByLevelOnIdTree(entityList);
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 
@@ -53,7 +53,7 @@ public class ConverterSpecialCaseTest  extends ConverterTestBase {
         entityList.add(new TreeEntity(2, "centre", 0));
         entityList.add(new TreeEntity(3, "right", 0));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertOrderedByLevelOnIdTree(entityList);
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 
@@ -69,7 +69,7 @@ public class ConverterSpecialCaseTest  extends ConverterTestBase {
         entityList.add(new TreeEntity(6, "right", 0));
         entityList.add(new TreeEntity(7, "right", 2));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertOrderedByLevelOnIdTree(entityList);
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 
@@ -90,7 +90,7 @@ public class ConverterSpecialCaseTest  extends ConverterTestBase {
         entityList.add(new TreeEntity(11, "right2", 3));
         entityList.add(new TreeEntity(12, "centre2", 3));
 
-        List<TreeDTO> resultListOfTrees = Converter.convertAllTree(entityList);
+        List<TreeDTO> resultListOfTrees = Converter.convertOrderedByLevelOnIdTree(entityList);
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 }
