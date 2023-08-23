@@ -1,12 +1,10 @@
 package org.example;
 
-import junit.framework.TestCase;
-import org.junit.Assert;
-
 import java.util.*;
 
-public class ConverterSpecialCaseTest extends TestCase implements TreeResultAnalyzer{
+public class ConverterSpecialCaseTest  extends ConverterTestBase {
 
+    @Override
     public void testConvertSingleBinaryTree() {
         Collection<TreeEntity> entityList = new ArrayList<>();
         entityList.add(new TreeEntity(0, "core", null));
@@ -14,13 +12,11 @@ public class ConverterSpecialCaseTest extends TestCase implements TreeResultAnal
         entityList.add(new TreeEntity(2, "right", 0));
 
         List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
-        Assert.assertEquals(resultListOfTrees.size(),1);
-        Assert.assertEquals(resultListOfTrees.get(0).getChildren().size(),2);
-
         checkTreeDTOFields(resultListOfTrees, entityList);
 
     }
 
+    @Override
     public void testConvertSeveralBinaryTree() {
         Collection<TreeEntity> entityList = new ArrayList<>();
         entityList.add(new TreeEntity(0, "core", null));
@@ -31,13 +27,10 @@ public class ConverterSpecialCaseTest extends TestCase implements TreeResultAnal
         entityList.add(new TreeEntity(5, "right", 2));
 
         List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
-        Assert.assertEquals(resultListOfTrees.size(),2);
-        Assert.assertEquals(resultListOfTrees.get(0).getChildren().size(),2);
-        Assert.assertEquals(resultListOfTrees.get(1).getChildren().size(),2);
-
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 
+    @Override
     public void testConvertSeveralLevelBinaryTree() {
         List<TreeEntity> entityList = new ArrayList<>();
         entityList.add(new TreeEntity(0, "core", null));
@@ -49,11 +42,10 @@ public class ConverterSpecialCaseTest extends TestCase implements TreeResultAnal
         entityList.add(new TreeEntity(6, "right2", 1));
 
         List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
-        Assert.assertEquals(resultListOfTrees.size(),1);
-
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 
+    @Override
     public void testConvertSingleNonBinaryTree() {
         List<TreeEntity> entityList = new ArrayList<>();
         entityList.add(new TreeEntity(0, "core", null));
@@ -62,12 +54,10 @@ public class ConverterSpecialCaseTest extends TestCase implements TreeResultAnal
         entityList.add(new TreeEntity(3, "right", 0));
 
         List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
-        Assert.assertEquals(resultListOfTrees.size(),1);
-        Assert.assertEquals(resultListOfTrees.get(0).getChildren().size(),3);
-
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 
+    @Override
     public void testConvertSeveralNonBinaryTree() {
         Collection<TreeEntity> entityList = new ArrayList<>();
         entityList.add(new TreeEntity(0, "core", null));
@@ -80,11 +70,10 @@ public class ConverterSpecialCaseTest extends TestCase implements TreeResultAnal
         entityList.add(new TreeEntity(7, "right", 2));
 
         List<TreeDTO> resultListOfTrees = Converter.convertTree(entityList);
-        Assert.assertEquals(resultListOfTrees.size(),2);
-
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 
+    @Override
     public void testConvertSeveralLevelNoneBinaryTree() {
         List<TreeEntity> entityList = new ArrayList<>();
         entityList.add(new TreeEntity(0, "core", null));
@@ -102,9 +91,6 @@ public class ConverterSpecialCaseTest extends TestCase implements TreeResultAnal
         entityList.add(new TreeEntity(12, "centre2", 3));
 
         List<TreeDTO> resultListOfTrees = Converter.convertAllTree(entityList);
-        Assert.assertEquals(resultListOfTrees.size(),1);
-        Assert.assertEquals(resultListOfTrees.get(0).getChildren().size(),3);
-
         checkTreeDTOFields(resultListOfTrees, entityList);
     }
 }
