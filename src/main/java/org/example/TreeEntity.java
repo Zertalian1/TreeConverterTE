@@ -13,16 +13,17 @@ public class TreeEntity implements Comparable<TreeEntity> {
 
     @Override
     public int compareTo(TreeEntity o) {
-        if (this.parentId == null && o.parentId == null){
+        if (this.parentId != null || o.parentId != null) {
+            if (this.parentId == null) {
+                return -1;
+            }
+            if (o.parentId == null) {
+                return 1;
+            }
+            return this.parentId - o.parentId;
+        } else {
             return 0;
         }
-        if (this.parentId == null){
-            return -1;
-        }
-        if (o.parentId == null){
-            return 1;
-        }
-        return this.parentId - o.parentId;
     }
 
     public Integer getId() {
